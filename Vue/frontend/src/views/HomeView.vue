@@ -1,15 +1,19 @@
-<template>
-  <hello-world />
+<template lang="">
+  <div align="center">
+    <router-link :to="{ name: 'GameLevelPage'}">
+      <v-btn color="primary">게임 플레이</v-btn>
+    </router-link>
+  </div>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
 
-  export default {
-    name: 'Home',
+export default {
 
-    components: {
-      HelloWorld,
-    },
-  }
+}
+
 </script>
+
+<style lang="">
+  
+</style>
