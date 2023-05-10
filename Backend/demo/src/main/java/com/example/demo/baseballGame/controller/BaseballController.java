@@ -1,6 +1,8 @@
 package com.example.demo.baseballGame.controller;
 
+import com.example.demo.baseballGame.controller.form.RequestGameSetForm;
 import com.example.demo.baseballGame.controller.form.RequestPlayerNumberForm;
+import com.example.demo.baseballGame.controller.form.ResponseResultForm;
 import com.example.demo.baseballGame.gameManager.GameManager;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +26,18 @@ public class BaseballController {
     private Integer level;
 
     @PostMapping("/get-result")
-    public String getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
+    public ResponseResultForm getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
         String result;
 
         playerNumberList = requestPlayerNumberForm.getPlayerNumberList();
         result = gameManager.getResult(computerNumberList, playerNumberList, level);
 
-        return result;
+        return new ResponseResultForm(requestPlayerNumberForm.getPlayerNumber(), result);
+    }
+
+    @PostMapping("/get-setting")
+    public void getGameSetting(@RequestBody RequestGameSetForm requestGameSetForm){
+        computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
+        level = requestGameSetForm.getLevel();
     }
 }
