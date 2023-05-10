@@ -9,10 +9,7 @@ import java.util.List;
 @Slf4j
 public class GameManager {
     private int round = 1;
-
-    private final List<Integer> playerNumberList = new ArrayList<>();
     private final List<Integer> computerNumberList = new ArrayList<>();
-    private int round = 1;
 
     public List<Integer> createComputerNumberList(int numberCount) {
         computerNumberList.clear();

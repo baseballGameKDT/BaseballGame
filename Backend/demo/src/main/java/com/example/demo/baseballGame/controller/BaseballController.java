@@ -27,15 +27,14 @@ public class BaseballController {
 
     @PostMapping("/get-result")
     public ResponseResultForm getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
-        String result;
 
         playerNumberList = requestPlayerNumberForm.getPlayerNumberList();
-        result = gameManager.getResult(computerNumberList, playerNumberList, level);
+        String result = gameManager.getResult(computerNumberList, playerNumberList, level);
 
-        return new ResponseResultForm(requestPlayerNumberForm.getPlayerNumber(), result);
+        return new ResponseResultForm(playerNumberList, result);
     }
 
-    @PostMapping("/get-setting")
+    @PostMapping("/choose-level")
     public void getGameSetting(@RequestBody RequestGameSetForm requestGameSetForm){
         computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
         level = requestGameSetForm.getLevel();
