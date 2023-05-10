@@ -19,6 +19,7 @@ export default {
         return axiosInst
             .post('baseball/get-result', {playerNumberList})
             .then((res) => {
+                console.log(res.data)
                 return res.data;
             })
     }
