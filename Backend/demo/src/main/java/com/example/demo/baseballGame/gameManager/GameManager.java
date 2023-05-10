@@ -13,6 +13,7 @@ public class GameManager {
 
     public List<Integer> createComputerNumberList(int numberCount) {
         computerNumberList.clear();
+        round = 1;
 
         final int MAX = 9;
 
@@ -62,12 +63,10 @@ public class GameManager {
 
     private String checkWin(int level, int strike){
         if(strike == 3){
-            round= 1;
             return "승리";
         }
 
         if(round>level && strike!=3){
-            round = 1;
             return "패배";
         }
         return null;
