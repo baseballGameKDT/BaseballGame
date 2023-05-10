@@ -29,24 +29,24 @@
 export default {
     data () {
         return {
-            selectedNumberCount: 0,
-            selectedLevel: 0
+            numberCount: 0,
+            level: 0
         }
     },
     methods: {
         selectNumberCount(event) {
-            this.selectedNumberCount = event.target.value;
-            console.log(this.selectedNumberCount)
+            this.numberCount = event.target.value;
+            console.log(this.numberCount)
         },
 
         selectLevel(event) {
-            this.selectedLevel = event.target.value;
-            console.log(this.selectedLevel)
+            this.level = event.target.value;
+            console.log(this.level)
         },
 
         chooseLevel() {
-            const {selectNumberCount, selectLevel} = this
-            this.$emit('submit', {selectNumberCount, selectLevel})
+            const {numberCount, level} = this
+            this.$emit('submit', {numberCount, level})
         }
     }
 }
