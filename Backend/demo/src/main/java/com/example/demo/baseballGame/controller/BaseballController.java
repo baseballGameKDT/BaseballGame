@@ -18,6 +18,7 @@ import java.util.List;
 @RequestMapping("/baseball")
 public class BaseballController {
     private List<Integer> computerNumberList = new ArrayList<>();
+
     private List<Integer> playerNumberList = new ArrayList<>();
     private GameManager gameManager = new GameManager();
     private Integer level;
@@ -26,9 +27,8 @@ public class BaseballController {
     public String getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
         String result;
 
-        playerNumberList =
-                gameManager.getplayerNumberList(requestPlayerNumberForm.getPlayerNumber());
-        result = gameManager.getResult(computerNumberList, level);
+        playerNumberList = requestPlayerNumberForm.getPlayerNumberList();
+        result = gameManager.getResult(computerNumberList, playerNumberList, level);
 
         return result;
     }
