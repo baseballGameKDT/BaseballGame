@@ -1,5 +1,6 @@
 package com.example.demo.baseballGame.gameManager;
 
+import com.example.demo.utility.random.CustomRandom;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -8,17 +9,10 @@ import java.util.List;
 @Slf4j
 public class GameManager {
     private final List<Integer> playerNumberList = new ArrayList<>();
+    private final List<Integer> computerNumberList = new ArrayList<>();
     private int round = 1;
 
-    public List<Integer> getplayerNumberList (int playerNumber) {
-        playerNumberList.clear();
 
-        playerNumberList.add(playerNumber / 100);
-        playerNumberList.add((playerNumber % 100) / 10);
-        playerNumberList.add(playerNumber % 10);
-
-        return playerNumberList;
-    }
 
     public String getResult (List<Integer> computerNumberList, int level) {
         final List<String> result = new ArrayList<>();
@@ -47,6 +41,25 @@ public class GameManager {
         log.info("round: " + round + ", strike: " + strike + ", ball: " + ball);
         round++;
 
+        String win = checkWin(level,strike);
+
+        if(win != null){
+            result.add(win);
+        }
+
         return result.toString();
+    }
+
+    private String checkWin(int level, int strike){
+        if(strike == 3){
+            round= 1;
+            return "승리";
+        }
+
+        if(round>level && strike!=3){
+            round = 1;
+            return "패배";
+        }
+        return null;
     }
 }
