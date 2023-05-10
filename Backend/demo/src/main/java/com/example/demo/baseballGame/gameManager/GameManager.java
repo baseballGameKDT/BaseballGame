@@ -12,7 +12,20 @@ public class GameManager {
     private final List<Integer> computerNumberList = new ArrayList<>();
     private int round = 1;
 
+    public List<Integer> createComputerNumberList(int numberCount) {
+        computerNumberList.clear();
 
+        final int MAX = 9;
+
+        while (computerNumberList.size() < numberCount) {
+            int value = CustomRandom.generateNumber(MAX);
+            if (computerNumberList.contains(value)) {
+                continue;
+            }
+            computerNumberList.add(value);
+        }
+        return computerNumberList;
+    }
 
     public String getResult (List<Integer> computerNumberList, int level) {
         final List<String> result = new ArrayList<>();

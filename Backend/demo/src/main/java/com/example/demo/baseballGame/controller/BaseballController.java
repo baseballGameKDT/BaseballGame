@@ -34,5 +34,9 @@ public class BaseballController {
         return new ResponseResultForm(requestPlayerNumberForm.getPlayerNumber(), result);
     }
 
-
+    @PostMapping("/get-setting")
+    public void getGameSetting(@RequestBody RequestGameSetForm requestGameSetForm){
+        computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
+        level = requestGameSetForm.getLevel();
+    }
 }
