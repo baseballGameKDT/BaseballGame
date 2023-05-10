@@ -12,5 +12,14 @@ export default {
         .catch(() => {
             alert("문제 발생!")
         })
+    },
+    requestGameResultToSpring ({}, payload) {
+        const {playerNumberList} = payload;
+
+        return axiosInst
+            .post('baseball/get-result', {playerNumberList})
+            .then((res) => {
+                return res.data;
+            })
     }
 }

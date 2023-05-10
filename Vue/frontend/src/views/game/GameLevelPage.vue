@@ -20,8 +20,10 @@ export default {
         ),
         async onSubmit (payload) {
             await this.sendGameLevelToSpring(payload)
+            console.log(payload.numberCount)
             await this.$router.push({
-                name: 'GamePlayPage'
+                name: 'GamePlayPage',
+                params: { numberCount: payload.numberCount }
             })
         }
     }
