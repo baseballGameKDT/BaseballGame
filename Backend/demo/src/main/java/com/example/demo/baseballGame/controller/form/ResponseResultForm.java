@@ -9,9 +9,9 @@ import java.util.List;
 @ToString
 public class ResponseResultForm {
     private List<Integer> playerNumberList;
-    private String result;
+    private List<String> result;
 
-    public ResponseResultForm(List<Integer> playerNumberList, String result) {
+    public ResponseResultForm(List<Integer> playerNumberList, List<String> result) {
         this.playerNumberList = playerNumberList;
         this.result = result;
     }

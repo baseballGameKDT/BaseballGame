@@ -30,7 +30,7 @@ public class GameManager {
         return computerNumberList;
     }
 
-    public String getResult (List<Integer> computerNumberList, List<Integer> playerNumberList, int level) {
+    public List<String> getResult (List<Integer> computerNumberList, List<Integer> playerNumberList, int level) {
         final List<String> result = new ArrayList<>();
 
         int strike = 0;
@@ -48,9 +48,7 @@ public class GameManager {
             }
         }
 
-        result.add(round + "Round");
-        result.add(strike + "S");
-        result.add(ball + "B");
+        result.add(round + "Round " + strike + "S " + ball + "B");
 
         log.info("round: " + round + ", strike: " + strike + ", ball: " + ball);
         round++;
@@ -59,9 +57,10 @@ public class GameManager {
 
         if(win != null){
             result.add(win);
+            result.add(computerNumberList.toString());
         }
 
-        return result.toString();
+        return result;
     }
 
     private String checkWin(int level, int strike){

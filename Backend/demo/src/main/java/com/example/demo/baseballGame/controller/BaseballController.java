@@ -29,7 +29,7 @@ public class BaseballController {
     public ResponseResultForm getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
 
         playerNumberList = requestPlayerNumberForm.getPlayerNumberList();
-        String result = gameManager.getResult(computerNumberList, playerNumberList, level);
+        List<String> result = gameManager.getResult(computerNumberList, playerNumberList, level);
 
         return new ResponseResultForm(playerNumberList, result);
     }
