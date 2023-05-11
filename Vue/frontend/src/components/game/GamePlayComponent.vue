@@ -1,17 +1,5 @@
 <template>
     <div>
-        <div class="left">
-            <v-list>
-                <v-list-item v-for="(round, index) in resultList">
-                    <v-list-item-content>
-                        <v-list-item-title>
-                            {{ round.playerNumberList }} <br>
-                            {{ round.result }}
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-            </v-list>
-        </div>
         <div class="right" align="center">
             <button v-if="!isClicked1" class="button" @click="selectNumber1($event)" value="1">1</button>
             <button v-if="isClicked1" class="button disabled">1</button>
@@ -35,6 +23,18 @@
             <button class="button" @click="getResult">확인</button> <br>
             {{ playerNumberList }}
         </div>
+        <div class="left" align="center">
+            <v-list>
+                <v-list-item v-for="(round, index) in resultList">
+                    <v-list-item-content>
+                        <v-list-item-title>
+                            {{ round.playerNumberList }} <br>
+                            {{ round.result }}
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list> 
+        </div>
     </div>
 </template>
 <script>
@@ -49,6 +49,7 @@ export default {
     },
     data () {
         return {
+            resultList: [],
             playerNumberList: [],
             selectedNumber: 0,
             isClicked1: false,
@@ -140,31 +141,11 @@ export default {
             }
 
         }
-    }
+    },
 }
 </script>
 
 <style>
-    div {
-        width: 100%;
-        height: 800px;
-        
-    }
-    div.left {
-        width: 50%;
-        float: left;
-        box-sizing: border-box;
-        
-        background: #ff0;
-    }
-    div.right {
-        width: 50%;
-        float: right;
-        box-sizing: border-box;
-        padding: 30px 100px;
-        
-        background: #0ff;
-    }
     .button {
         background-color: blue;
 

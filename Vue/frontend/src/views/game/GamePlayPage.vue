@@ -14,6 +14,7 @@ export default {
     data () {
         return {
             resultList: [],
+            round: {}
         }
     },
     components: {
@@ -28,13 +29,14 @@ export default {
     methods: {
         ...mapActions( gameModule, ['requestGameResultToSpring']),
 
-        getResult(payload) {
-            this.resultList.put(this.requestGameResultToSpring(payload))
+        async getResult(payload) {
+            this.round = await this.requestGameResultToSpring(payload)
+            await this.resultList.push(this.round)
         }
     }
 }
 </script>
 
 <style>
-    
+  
 </style>
