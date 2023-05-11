@@ -9,16 +9,19 @@ import java.util.List;
 @Slf4j
 public class GameManager {
     private int round = 1;
+    private int winCondition;
     private final List<Integer> computerNumberList = new ArrayList<>();
 
     public List<Integer> createComputerNumberList(int numberCount) {
         computerNumberList.clear();
         round = 1;
+        winCondition = numberCount;
 
+        final int MIN = 1;
         final int MAX = 9;
 
         while (computerNumberList.size() < numberCount) {
-            int value = CustomRandom.generateNumber(MAX);
+            int value = CustomRandom.generateNumber(MIN, MAX);
             if (computerNumberList.contains(value)) {
                 continue;
             }
@@ -62,11 +65,11 @@ public class GameManager {
     }
 
     private String checkWin(int level, int strike){
-        if(strike == 3){
+        if(strike == winCondition){
             return "승리";
         }
 
-        if(round>level && strike!=3){
+        if(round>level && strike!=winCondition){
             return "패배";
         }
         return null;
