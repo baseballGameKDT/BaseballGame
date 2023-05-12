@@ -29,7 +29,7 @@
                     <v-list-item-content>
                         <v-list-item-title>
                             {{ round.playerNumberList }} <br>
-                            {{ round.result }}
+                            {{ round.result[0] }}
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
