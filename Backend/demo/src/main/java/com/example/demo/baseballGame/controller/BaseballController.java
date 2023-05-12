@@ -1,11 +1,9 @@
 package com.example.demo.baseballGame.controller;
 
-import com.example.demo.baseballGame.controller.form.RequestAccountForm;
 import com.example.demo.baseballGame.controller.form.RequestGameSetForm;
 import com.example.demo.baseballGame.controller.form.RequestPlayerNumberForm;
 import com.example.demo.baseballGame.controller.form.ResponseResultForm;
 import com.example.demo.baseballGame.gameManager.GameManager;
-import com.example.demo.baseballGame.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +25,6 @@ public class BaseballController {
     private GameManager gameManager = new GameManager();
     private Integer level;
 
-    final UserService userService;
-
     @PostMapping("/get-result")
     public ResponseResultForm getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
 
@@ -42,10 +38,5 @@ public class BaseballController {
     public void getGameSetting(@RequestBody RequestGameSetForm requestGameSetForm){
         computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
         level = requestGameSetForm.getLevel();
-    }
-
-    @PostMapping("/signup-account")
-    public Boolean signupAccount(@RequestBody RequestAccountForm requestAccountForm) {
-        return userService.register(requestAccountForm);
     }
 }
