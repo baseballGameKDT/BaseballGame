@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
         Optional<User> maybeUser = userRepository.findByEmail(email);
 
         if(maybeUser.isPresent()) {
-            if(password == maybeUser.get().getPassword()) {
+            if(password.equals(maybeUser.get().getPassword())) {
                 return new ResponseLoginForm(true, maybeUser.get().getEmail());
             }
         }
