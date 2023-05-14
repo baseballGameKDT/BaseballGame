@@ -20,6 +20,8 @@
             <button v-if="!isClicked9" class="button" @click="selectNumber9($event)" value="9">9</button>
             <button v-if="isClicked9" class="button disabled">9</button> <br>
             <button class="button" @click="cancel">취소</button>
+            <button v-if="!isClicked9" class="button" @click="selectNumber9($event)" value="9">9</button>
+            <button v-if="isClicked9" class="button disabled">0</button>
             <button class="button" @click="getResult">확인</button> <br>
             {{ playerNumberList }}
         </div>
@@ -52,6 +54,7 @@ export default {
             resultList: [],
             playerNumberList: [],
             selectedNumber: 0,
+            isClicked0: false,
             isClicked1: false,
             isClicked2: false,
             isClicked3: false,
@@ -65,6 +68,12 @@ export default {
         }
     },
     methods: {
+        selectNumber0(event) {
+            if (this.playerNumberList.length < this.numberCount) {
+            this.playerNumberList.push(event.target.value)
+            this.isClicked0 = true
+            }
+        },
         selectNumber1(event) {
             if (this.playerNumberList.length < this.numberCount) {
             this.playerNumberList.push(event.target.value)
