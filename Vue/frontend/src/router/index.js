@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import gameRoutes from './game'
+import accountRoutes from './account'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,7 @@ const routes = [
   },
 
   ...gameRoutes,
+  ...accountRoutes,
 ]
 
 const router = new VueRouter({
