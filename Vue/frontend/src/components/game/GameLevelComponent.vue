@@ -8,18 +8,12 @@
             <li>
                 <label><input type="radio" name="numberCount" @change="selectNumberCount($event)" value="4">4개</label>
             </li>
-            <li>
-                <label><input type="radio" name="numberCount" @change="selectNumberCount($event)" value="5">5개</label>
-            </li>
             <legend>난이도 선택</legend>
             <li>
-                <label><input type="radio" name="level" @change="selectLevel($event)" value="20">easy</label>
+                <label><input type="radio" name="level" @change="selectLevel($event)" value="20">쉬움 (20턴)</label>
             </li>
             <li>
-                <label><input type="radio" name="level" @change="selectLevel($event)" value="10">moderate</label>
-            </li>
-            <li>
-                <label><input type="radio" name="level" @change="selectLevel($event)" value="5">hard</label>
+                <label><input type="radio" name="level" @change="selectLevel($event)" value="10">어려움 (10턴)</label>
             </li>
             <v-btn color="blue" type="submit">선택하기</v-btn>
         </form>

@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import actions from "@/store/game/actions"
+import actions from "@/store/account/actions"
 
 Vue.use(Vuex)
 
-const GameModule = {
+const AccountModule = {
     namespaced: true,
     actions,
 }
 
-export default GameModule
+export default AccountModule
