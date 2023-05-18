@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -35,10 +36,12 @@ public class UserServiceImpl implements UserService{
 
         if(maybeUser.isPresent()) {
             if(password.equals(maybeUser.get().getPassword())) {
-                return new ResponseLoginForm(true, maybeUser.get().getEmail());
+                return new ResponseLoginForm(
+                        maybeUser.get().getUser_Id(),
+                        maybeUser.get().getNickname(),
+                        maybeUser.get().getPoint());
             }
         }
-
-        return new ResponseLoginForm(false, null);
+        return null;
     }
 }

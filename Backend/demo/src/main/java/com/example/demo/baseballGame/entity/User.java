@@ -8,16 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_Id;
 
-    @Getter
     private String email;
-
-    @Getter
     private String password;
     private String nickname;
     private Integer point;
