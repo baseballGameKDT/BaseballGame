@@ -23,6 +23,7 @@ public class BaseballController {
     private List<Integer> playerNumberList = new ArrayList<>();
     private GameManager gameManager = new GameManager();
     private Integer level;
+    final UserService userService;
 
     final UserService userService;
 
