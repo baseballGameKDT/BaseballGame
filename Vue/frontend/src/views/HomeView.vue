@@ -3,12 +3,7 @@
     <router-link :to="{ name: 'SignUpPage' }">
       <v-btn color="primary">회원 가입</v-btn>
     </router-link>
-    <LoginComponent @click="login" /><br />
-    <div v-if="isLoggedIn">
-      {{ nickName }} 님 어서오세요!
-      <router-link :to="{ name: 'GameLevelPage' }">
-        <v-btn color="primary">게임 플레이</v-btn>
-      </router-link>
+    <LoginComponent @click="login" />
     </div>
   </div>
 </template>
@@ -20,12 +15,6 @@ import { mapActions } from "vuex";
 const accountModule = "accountModule";
 
 export default {
-  data() {
-    return {
-      isLoggedIn: false,
-      nickName: "",
-    };
-  },
   components: {
     LoginComponent,
   },
@@ -33,15 +22,10 @@ export default {
     ...mapActions(accountModule, ["requestLoginToSpring"]),
     async login(payload) {
       await this.requestLoginToSpring(payload);
+      await this.$router.push({
+        name: 'GameLevelPage'
+      })
     },
-  },
-  mounted() {
-    if (localStorage.getItem("loginUserId") == null) {
-      this.isLoggedIn = false;
-    } else {
-      this.isLoggedIn = true;
-      this.nickName = localStorage.getItem("loginUserNickName");
-    }
   },
 };
 </script>
