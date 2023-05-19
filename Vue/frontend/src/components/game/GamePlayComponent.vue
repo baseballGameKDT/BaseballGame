@@ -51,7 +51,6 @@ export default {
     },
     data () {
         return {
-            resultList: [],
             playerNumberList: [],
             selectedNumber: 0,
             isClicked0: false,
