@@ -22,8 +22,10 @@ export default {
     logout() {
         this.isLogin = false
         localStorage.clear()
-        this.$router.go({
+        this.$router.push({
             name: "home"
+        }).catch(() => {
+            location.reload()
         })
     }
   },
