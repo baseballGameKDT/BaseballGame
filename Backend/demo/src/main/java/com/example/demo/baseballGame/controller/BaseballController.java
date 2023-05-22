@@ -47,7 +47,7 @@ public class BaseballController {
         return userService.login(requestLoginForm);
     }
 
-    @PutMapping("/modify-nickname")
+    @PutMapping("/modify-accountInfo")
     public Boolean modifyNickname(@RequestBody RequestModifyAccountInfoForm requestModifyAccountInfoForm){
         return userService.modify(requestModifyAccountInfoForm);
     }

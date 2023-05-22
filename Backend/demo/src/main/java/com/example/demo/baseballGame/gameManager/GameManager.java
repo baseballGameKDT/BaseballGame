@@ -12,6 +12,14 @@ public class GameManager {
     private int winCondition;
     private final List<Integer> computerNumberList = new ArrayList<>();
 
+    private Long player_id;
+    private int point;
+
+    public void setPlayInfo(Long user_id, Integer batPoint){
+        player_id = user_id;
+        point = batPoint;
+    }
+
     public List<Integer> createComputerNumberList(int numberCount) {
         computerNumberList.clear();
         round = 1;
@@ -66,6 +74,7 @@ public class GameManager {
     private String checkWin(int level, int strike){
         if(strike == winCondition){
             return "승리";
+
         }
 
         if(round>level && strike!=winCondition){

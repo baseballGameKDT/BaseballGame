@@ -13,4 +13,6 @@ public interface UserService {
     Boolean modify(RequestModifyAccountInfoForm requestModifyAccountInfoForm);
 
     Boolean delete(Long user_id);
+
+    void setPoint(Integer );
 }

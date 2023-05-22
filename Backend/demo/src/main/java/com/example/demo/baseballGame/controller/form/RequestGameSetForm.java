@@ -8,7 +8,12 @@ import lombok.ToString;
 @ToString
 @RequiredArgsConstructor
 public class RequestGameSetForm {
+
     private final Integer numberCount;
 
     private final Integer level;
+
+    private final Integer point;
+
+    private final Long user_Id;
 }
