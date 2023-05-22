@@ -1,5 +1,6 @@
 package com.example.demo.baseballGame.gameManager;
 
+import com.example.demo.baseballGame.entity.User;
 import com.example.demo.utility.random.CustomRandom;
 import lombok.extern.slf4j.Slf4j;
 
@@ -11,6 +12,9 @@ public class GameManager {
     private int round = 1;
     private int winCondition;
     private final List<Integer> computerNumberList = new ArrayList<>();
+    private int NUMBER_COUNT = 0;
+    private Integer resultPoint = 0;
+    private String allot;
 
     public List<Integer> createComputerNumberList(int numberCount) {
         computerNumberList.clear();
@@ -30,12 +34,14 @@ public class GameManager {
         return computerNumberList;
     }
 
-    public List<String> getResult (List<Integer> computerNumberList, List<Integer> playerNumberList, int level) {
+    public List<String> getResult (List<Integer> computerNumberList, List<Integer> playerNumberList, int level, User user, int bettingPoint) {
         final List<String> result = new ArrayList<>();
+
+        setBet(NUMBER_COUNT, level);
 
         int strike = 0;
         int ball = 0;
-        final int NUMBER_COUNT = computerNumberList.size();
+        NUMBER_COUNT = computerNumberList.size();
 
         for(int i = 0; i < NUMBER_COUNT; i++) {
             if(computerNumberList.contains(playerNumberList.get(i))) {
@@ -58,6 +64,7 @@ public class GameManager {
         if(win != null){
             result.add(win);
             result.add(computerNumberList.toString());
+            calculatePoint(win, user, bettingPoint);
         }
 
         return result;
@@ -72,5 +79,48 @@ public class GameManager {
             return "패배";
         }
         return null;
+    }
+
+    private String setBet(int NUMBER_COUNT, int level) {
+        if(NUMBER_COUNT == 3 && level == 10) {
+            allot = "easy";
+        }
+        if(NUMBER_COUNT == 4 && level == 20) {
+            allot = "normal";
+        }
+        if(NUMBER_COUNT == 4 && level == 10) {
+            allot = "hard";
+        }
+        return allot;
+    }
+    private void calculatePoint (String win, User user, int bettingPoint) {
+        if(win.equals("승리")) {
+            switch (allot) {
+                case "easy":
+                    resultPoint = user.getPoint() - bettingPoint + ( 2 * bettingPoint );
+                    break;
+                case "normal":
+                    resultPoint = user.getPoint() - bettingPoint + ( 3 * bettingPoint );
+                    break;
+                case "hard":
+                    resultPoint = user.getPoint() - bettingPoint + ( 4 * bettingPoint );
+                    break;
+            }
+            user.setPoint(resultPoint);
+        }
+        if(win.equals("패배")) {
+            switch (allot) {
+                case "easy":
+                    resultPoint = user.getPoint() - bettingPoint - ( 2 * bettingPoint );
+                    break;
+                case "normal":
+                    resultPoint = user.getPoint() - bettingPoint - ( 3 * bettingPoint );
+                    break;
+                case "hard":
+                    resultPoint = user.getPoint() - bettingPoint - ( 4 * bettingPoint );
+                    break;
+            }
+            user.setPoint(resultPoint);
+        }
     }
 }

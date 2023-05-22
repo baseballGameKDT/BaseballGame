@@ -10,9 +10,11 @@ import java.util.List;
 public class ResponseResultForm {
     private List<Integer> playerNumberList;
     private List<String> result;
+    private Integer playerPoint;
 
-    public ResponseResultForm(List<Integer> playerNumberList, List<String> result) {
+    public ResponseResultForm(List<Integer> playerNumberList, List<String> result, Integer playerPoint) {
         this.playerNumberList = playerNumberList;
         this.result = result;
+        this.playerPoint = playerPoint;
     }
 }

@@ -9,6 +9,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class RequestGameSetForm {
     private final Integer numberCount;
-
     private final Integer level;
+    private final Integer bettingPoint;
+    private final Long user_Id;
 }
