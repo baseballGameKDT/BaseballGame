@@ -2,7 +2,7 @@ package com.example.demo.baseballGame.service;
 
 import com.example.demo.baseballGame.controller.form.RequestAccountForm;
 import com.example.demo.baseballGame.controller.form.RequestLoginForm;
-import com.example.demo.baseballGame.controller.form.RequestModifyNicknameForm;
+import com.example.demo.baseballGame.controller.form.RequestModifyAccountInfoForm;
 import com.example.demo.baseballGame.controller.form.ResponseLoginForm;
 import com.example.demo.baseballGame.entity.User;
 import com.example.demo.baseballGame.repository.UserRepository;
@@ -47,15 +47,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Boolean modify(RequestModifyNicknameForm requestModifyNicknameForm) {
-        Optional<User> maybeUser = userRepository.findById(requestModifyNicknameForm.getUser_Id());
+    public Boolean modify(RequestModifyAccountInfoForm requestModifyAccountInfoForm) {
+        Optional<User> maybeUser = userRepository.findById(requestModifyAccountInfoForm.getUser_Id());
 
         if(maybeUser.isEmpty()){
             return false;
         }
 
         User user = maybeUser.get();
-        user.setNickname(requestModifyNicknameForm.getNickname());
+        user.setNickname(requestModifyAccountInfoForm.getNickname());
+        user.setPassword(requestModifyAccountInfoForm.getPassword());
 
         userRepository.save(user);
 

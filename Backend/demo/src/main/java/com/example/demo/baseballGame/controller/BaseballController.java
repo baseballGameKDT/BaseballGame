@@ -48,8 +48,8 @@ public class BaseballController {
     }
 
     @PutMapping("/modify-nickname")
-    public Boolean modifyNickname(@RequestBody RequestModifyNicknameForm requestModifyNicknameForm){
-        return userService.modify(requestModifyNicknameForm);
+    public Boolean modifyNickname(@RequestBody RequestModifyAccountInfoForm requestModifyAccountInfoForm){
+        return userService.modify(requestModifyAccountInfoForm);
     }
 
     @DeleteMapping("/delete-account")

@@ -1,6 +1,6 @@
 package com.example.demo.baseballGame.service;
 
-import com.example.demo.baseballGame.controller.form.RequestModifyNicknameForm;
+import com.example.demo.baseballGame.controller.form.RequestModifyAccountInfoForm;
 import com.example.demo.baseballGame.controller.form.ResponseLoginForm;
 import com.example.demo.baseballGame.controller.form.RequestAccountForm;
 import com.example.demo.baseballGame.controller.form.RequestLoginForm;
@@ -10,7 +10,7 @@ public interface UserService {
 
     ResponseLoginForm login(RequestLoginForm requestLoginForm);
 
-    Boolean modify(RequestModifyNicknameForm requestModifyNicknameForm);
+    Boolean modify(RequestModifyAccountInfoForm requestModifyAccountInfoForm);
 
     Boolean delete(Long user_id);
 }
