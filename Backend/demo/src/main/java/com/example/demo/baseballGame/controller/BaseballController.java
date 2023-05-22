@@ -51,4 +51,9 @@ public class BaseballController {
     public Boolean modifyNickname(@RequestBody RequestModifyNicknameForm requestModifyNicknameForm){
         return userService.modify(requestModifyNicknameForm);
     }
+
+    @DeleteMapping("/delete-account")
+    public Boolean deleteAccount(@RequestParam("user_Id") Long user_Id){
+        return userService.delete(user_Id);
+    }
 }

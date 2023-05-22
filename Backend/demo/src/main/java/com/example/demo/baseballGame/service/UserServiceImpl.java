@@ -61,4 +61,17 @@ public class UserServiceImpl implements UserService{
 
         return true;
     }
+
+    @Override
+    public Boolean delete(Long user_Id) {
+        Optional<User> maybeUser = userRepository.findById(user_Id);
+
+        if(maybeUser.isEmpty()){
+            return false;
+        }
+
+        userRepository.delete(maybeUser.get());
+
+        return true;
+    }
 }

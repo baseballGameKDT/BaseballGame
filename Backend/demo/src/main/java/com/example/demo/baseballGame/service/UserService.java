@@ -11,4 +11,6 @@ public interface UserService {
     ResponseLoginForm login(RequestLoginForm requestLoginForm);
 
     Boolean modify(RequestModifyNicknameForm requestModifyNicknameForm);
+
+    Boolean delete(Long user_id);
 }
