@@ -6,7 +6,12 @@
       <v-btn color="blue" @click="normalLevel">normal</v-btn>
       <v-btn color="red" @click="hardLevel">hard</v-btn>
     </div>
-    {{ selectedLevel }} <br />
+    <div class="bet" align="left">
+      현재 포인트: {{ currentPoint }} <br />
+      베팅 금액:
+      <input type="number" v-model="point" /> <br />
+      {{ selectedLevel }} <br />
+    </div>
     <v-btn color="grey" @click="chooseLevel">선택하기</v-btn>
   </div>
 </template>
@@ -16,6 +21,8 @@ export default {
     return {
       numberCount: 0,
       level: 0,
+      point: 0,
+      currentPoint: localStorage.getItem("loginUserPoint"),
       selectedLevel: "",
     };
   },
@@ -50,5 +57,12 @@ export default {
 <style scoped>
 div {
   margin: 10px;
+}
+.bet {
+  box-sizing: content-box;
+  width: 300px;
+  height: 30px;
+  margin: 10px;
+  padding: 30px;
 }
 </style>
