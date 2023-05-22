@@ -5,10 +5,7 @@ import com.example.demo.baseballGame.gameManager.GameManager;
 import com.example.demo.baseballGame.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +20,6 @@ public class BaseballController {
     private List<Integer> playerNumberList = new ArrayList<>();
     private GameManager gameManager = new GameManager();
     private Integer level;
-    final UserService userService;
-
     final UserService userService;
 
     @PostMapping("/get-result")
@@ -50,5 +45,10 @@ public class BaseballController {
     @PostMapping("/login-account")
     public ResponseLoginForm loginAccount(@RequestBody RequestLoginForm requestLoginForm) {
         return userService.login(requestLoginForm);
+    }
+
+    @PutMapping("/modify-nickname")
+    public Boolean modifyNickname(@RequestBody RequestModifyNicknameForm requestModifyNicknameForm){
+        return userService.modify(requestModifyNicknameForm);
     }
 }

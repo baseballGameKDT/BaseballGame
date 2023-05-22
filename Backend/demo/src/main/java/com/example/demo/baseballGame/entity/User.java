@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -17,6 +18,7 @@ public class User {
 
     private String email;
     private String password;
+    @Setter
     private String nickname;
     private Integer point;
 
