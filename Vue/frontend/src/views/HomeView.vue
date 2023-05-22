@@ -1,12 +1,14 @@
 <template lang="">
-  <div align="center">
+  <div>
     <router-link :to="{ name: 'SignUpPage' }">
       <v-btn v-if="!isLoggedIn" color="primary">회원 가입</v-btn>
     </router-link>
     <LoginComponent @click="login" /><br />
-    <router-link :to="{ name: 'GameLevelPage' }">
-      <v-btn v-if="isLoggedIn" color="primary">게임 플레이</v-btn>
-    </router-link>
+    <div v-if="isLoggedIn">
+      <router-link :to="{ name: 'GameLevelPage' }">
+        <v-btn color="primary">게임 플레이</v-btn>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -37,9 +39,18 @@ export default {
       this.isLoggedIn = false;
     } else {
       this.isLoggedIn = true;
+      this.nickname = localStorage.getItem("loginUserNickName");
     }
   },
 };
 </script>
 
-<style lang=""></style>
+<style scoped>
+div {
+  margin: 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+</style>
