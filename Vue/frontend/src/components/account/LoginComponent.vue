@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <v-btn @click="readyToLogin">로그인</v-btn>
+    <v-btn v-if="!isLoggedIn" @click="readyToLogin">로그인</v-btn>
     <div v-if="isReadyToLogin">
       <label> 이메일: <input type="text" v-model="email" required /> </label
       ><br />
@@ -18,6 +18,7 @@ export default {
       email: "",
       password: "",
       isReadyToLogin: false,
+      isLoggedIn: false,
     };
   },
   methods: {
@@ -29,6 +30,13 @@ export default {
     readyToLogin() {
       this.isReadyToLogin = true;
     },
+  },
+  mounted() {
+    if (localStorage.getItem("loginUserId") == null) {
+      this.isLoggedIn = false;
+    } else {
+      this.isLoggedIn = true;
+    }
   },
 };
 </script>
