@@ -1,50 +1,54 @@
 <template lang="">
-    <div>
-        <form @submit.prevent="chooseLevel">
-            <legend>숫자 갯수 선택</legend>
-            <li>
-                <label><input type="radio" name="numberCount" @change="selectNumberCount($event)" value="3">3개</label>
-            </li>
-            <li>
-                <label><input type="radio" name="numberCount" @change="selectNumberCount($event)" value="4">4개</label>
-            </li>
-            <legend>난이도 선택</legend>
-            <li>
-                <label><input type="radio" name="level" @change="selectLevel($event)" value="20">쉬움 (20턴)</label>
-            </li>
-            <li>
-                <label><input type="radio" name="level" @change="selectLevel($event)" value="10">어려움 (10턴)</label>
-            </li>
-            <v-btn color="blue" type="submit">선택하기</v-btn>
-        </form>
+  <div>
+    <div align="center">
+      <legend>숫자 갯수 선택</legend>
+      <v-btn color="green" @click="easyLevel">easy</v-btn>
+      <v-btn color="blue" @click="normalLevel">normal</v-btn>
+      <v-btn color="red" @click="hardLevel">hard</v-btn>
     </div>
+    {{ selectedLevel }} <br />
+    <v-btn color="grey" @click="chooseLevel">선택하기</v-btn>
+  </div>
 </template>
 <script>
 export default {
-    data () {
-        return {
-            numberCount: 0,
-            level: 0
-        }
+  data() {
+    return {
+      numberCount: 0,
+      level: 0,
+      selectedLevel: "",
+    };
+  },
+  methods: {
+    easyLevel() {
+      this.level = 10;
+      this.numberCount = 3;
+      this.selectedLevel = "easy (숫자 3개, 10라운드)";
     },
-    methods: {
-        selectNumberCount(event) {
-            this.numberCount = event.target.value;
-            console.log(this.numberCount)
-        },
+    normalLevel() {
+      this.level = 20;
+      this.numberCount = 4;
+      this.selectedLevel = "normal (숫자 4개, 20라운드)";
+    },
+    hardLevel() {
+      this.level = 10;
+      this.numberCount = 4;
+      this.selectedLevel = "hard (숫자 4개, 10라운드)";
+    },
 
-        selectLevel(event) {
-            this.level = event.target.value;
-            console.log(this.level)
-        },
-
-        chooseLevel() {
-            const {numberCount, level} = this
-            this.$emit('submit', {numberCount, level})
-        }
-    }
-}
+    chooseLevel() {
+      if (this.point < this.currentPoint) {
+        const { numberCount, level, point } = this;
+        this.$emit("submit", { numberCount, level, point });
+      } else {
+        alert("포인트가 부족합니다.");
+      }
+    },
+  },
+};
 </script>
-<style lang="">
-    
+<style scoped>
+div {
+  margin: 10px;
+}
 </style>
