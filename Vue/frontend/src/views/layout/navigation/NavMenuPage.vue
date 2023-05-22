@@ -1,10 +1,23 @@
 <template lang="">
   <nav>
-    <v-app-bar color="green">
-      </v-toolbar-title>
+    <v-app-bar color="green darken-3">
+      </v-toolbar-title >
+      <span style="color: white">
+        <v-icon style="color: white">mdi-baseball</v-icon>
+        <b>
+          재밌는 숫자야구 게임
+        </b>
+      </span>
       <v-spacer></v-spacer>
-      <v-btn v-if="isLogin" text @click="logout">
-        <span>로그아웃</span>
+      <span style="color: white" v-if="isLogin">
+        <b>
+          {{ nickname }} 님 어서오세요
+        </b>
+      </span>
+    </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn v-if="isLogin" @click="logout">
+        <span >로그아웃</span>
         <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
@@ -15,7 +28,8 @@ export default {
   data() {
     return {
       isLogin: false,
-      accountId: 0
+      accountId: 0,
+      nickname: localStorage.getItem("userInfoNickName")
     };
   },
   methods: {
