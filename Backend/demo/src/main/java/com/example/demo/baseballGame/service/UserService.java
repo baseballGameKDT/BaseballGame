@@ -12,5 +12,5 @@ public interface UserService {
 
     ResponseLoginForm login(RequestLoginForm requestLoginForm);
 
-    Optional<User> findById(Long userId);
+    void setGameStartPoint(Long userId, Integer bettingPoint);
 }

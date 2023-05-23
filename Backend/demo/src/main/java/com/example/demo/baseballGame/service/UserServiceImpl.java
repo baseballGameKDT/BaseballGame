@@ -9,13 +9,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    final UserRepository userRepository;
+    final private UserRepository userRepository;
 
     @Override
     public Boolean register(RequestAccountForm requestAccountForm) {
@@ -47,8 +46,17 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<User> findById(Long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        return user;
+    public void setGameStartPoint(Long userId, Integer bettingPoint) {
+        final User user;
+        final int gameStartPoint;
+
+        Optional<User> maybeUser = userRepository.findById(userId);
+        if(maybeUser.isPresent()) {
+            user = maybeUser.get();
+            gameStartPoint = user.getPoint() - bettingPoint;
+
+            user.setPoint(gameStartPoint);
+            userRepository.save(user);
+        }
     }
 }
