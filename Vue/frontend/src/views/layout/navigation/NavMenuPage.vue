@@ -9,7 +9,7 @@
         </b>
       </span>
       <v-spacer></v-spacer>
-      <span style="color: white" v-if="isLogin">
+      <span style="color: white" >
         <b>
           {{ nickname }} 님 어서오세요
         </b>
@@ -29,7 +29,7 @@ export default {
     return {
       isLogin: false,
       accountId: 0,
-      nickname: localStorage.getItem("userInfoNickName")
+      nickname: localStorage.getItem("loginUserNickName")
     };
   },
   methods: {
@@ -38,7 +38,9 @@ export default {
         localStorage.clear()
         this.$router.push({
             name: "home"
-        }).catch(() => {
+        })
+        location.reload()
+        .catch(() => {
             location.reload()
         })
     }
