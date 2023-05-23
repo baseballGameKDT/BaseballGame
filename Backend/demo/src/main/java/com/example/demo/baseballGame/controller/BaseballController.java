@@ -2,7 +2,6 @@ package com.example.demo.baseballGame.controller;
 
 import com.example.demo.baseballGame.controller.form.*;
 import com.example.demo.baseballGame.gameManager.GameManager;
-import com.example.demo.baseballGame.service.GameService;
 import com.example.demo.baseballGame.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,34 +20,28 @@ import java.util.List;
 public class BaseballController {
     private List<Integer> computerNumberList = new ArrayList<>();
     private List<Integer> playerNumberList = new ArrayList<>();
-    final private GameManager gameManager = new GameManager();
     private Integer level;
-    final private UserService userService;
-    final private GameService gameService;
     private Long userId;
     private int bettingPoint;
+    final UserService userService;
+    final GameManager gameManager;
 
     @PostMapping("/get-result")
     public ResponseResultForm getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
 
         playerNumberList = requestPlayerNumberForm.getPlayerNumberList();
-        List<String> result = gameManager.getResult(computerNumberList, playerNumberList, level);
+        List<String> result = gameManager.getResult(
+                computerNumberList, playerNumberList, level, userId, bettingPoint);
 
-        if (result.get(2).equals("승리")) {
-            gameService.getPoint(userId, bettingPoint, gameManager.getAllot());
-        } else if (result.get(2).equals("패배"))  {
-            gameService.losePoint(userId, bettingPoint);
-        }
-
-
-        return new ResponseResultForm(playerNumberList, result); // 포인트 넣어서 줘야 함
+        return new ResponseResultForm(playerNumberList, result);
     }
 
     @PostMapping("/choose-level")
     public void getGameSetting(@RequestBody RequestGameSetForm requestGameSetForm){
-        computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
-        level = requestGameSetForm.getLevel();
 
+        computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
+
+        level = requestGameSetForm.getLevel();
         userId = requestGameSetForm.getUser_Id();
         bettingPoint = requestGameSetForm.getBettingPoint();
 

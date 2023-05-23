@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    final private UserRepository userRepository;
+    final UserRepository userRepository;
 
     @Override
     public Boolean register(RequestAccountForm requestAccountForm) {
@@ -47,15 +47,20 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void setGameStartPoint(Long userId, Integer bettingPoint) {
-        final User user;
-        final int gameStartPoint;
-
         Optional<User> maybeUser = userRepository.findById(userId);
+
+        int currentPoint;
+        int gameStartPoint;
+
+        User user;
+
         if(maybeUser.isPresent()) {
             user = maybeUser.get();
-            gameStartPoint = user.getPoint() - bettingPoint;
 
+            currentPoint = user.getPoint();
+            gameStartPoint = currentPoint - bettingPoint;
             user.setPoint(gameStartPoint);
+
             userRepository.save(user);
         }
     }
