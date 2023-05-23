@@ -1,18 +1,20 @@
 <template lang="">
   <div>
-    <div align="center">
-      <legend>숫자 갯수 선택</legend>
-      <v-btn color="green" @click="easyLevel">easy</v-btn>
-      <v-btn color="blue" @click="normalLevel">normal</v-btn>
-      <v-btn color="red" @click="hardLevel">hard</v-btn>
-    </div>
-    <div class="bet" align="left">
-      현재 포인트: {{ currentPoint }} <br />
-      베팅 금액:
-      <input type="number" v-model="point" /> <br />
-      {{ selectedLevel }} <br />
-    </div>
-    <v-btn color="grey" @click="chooseLevel">선택하기</v-btn>
+    <form @submit.prevent="chooseLevel">
+      <div align="center">
+        <legend>난이도 선택</legend>
+        <v-btn color="green" @click="easyLevel">easy</v-btn>
+        <v-btn color="blue" @click="normalLevel">normal</v-btn>
+        <v-btn color="red" @click="hardLevel">hard</v-btn>
+      </div>
+      <div class="bet" align="left">
+        현재 포인트: {{ currentPoint }} <br />
+        베팅 금액:
+        <input type="number" v-model="point" /> <br />
+        {{ selectedLevel }} <br />
+      </div>
+      <v-btn color="grey" type="submit">선택하기</v-btn>
+    </form>
   </div>
 </template>
 <script>
@@ -22,7 +24,7 @@ export default {
       numberCount: 0,
       level: 0,
       point: 0,
-      currentPoint: localStorage.getItem("loginUserPoint"),
+      currentPoint: parseInt(localStorage.getItem("loginUserPoint")),
       selectedLevel: "",
     };
   },
@@ -48,6 +50,8 @@ export default {
         const { numberCount, level, point } = this;
         this.$emit("submit", { numberCount, level, point });
       } else {
+        console.log(this.point);
+        console.log(this.currentPoint);
         alert("포인트가 부족합니다.");
       }
     },
