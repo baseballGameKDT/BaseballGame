@@ -26,6 +26,7 @@ export default {
       point: 0,
       currentPoint: parseInt(localStorage.getItem("loginUserPoint")),
       selectedLevel: "",
+      user_id: localStorage.getItem("loginUserId")
     };
   },
   methods: {
@@ -47,11 +48,9 @@ export default {
 
     chooseLevel() {
       if (this.point < this.currentPoint) {
-        const { numberCount, level, point } = this;
-        this.$emit("submit", { numberCount, level, point });
+        const { numberCount, level, point, user_id } = this;
+        this.$emit("submit", { numberCount, level, point, user_id });
       } else {
-        console.log(this.point);
-        console.log(this.currentPoint);
         alert("포인트가 부족합니다.");
       }
     },
