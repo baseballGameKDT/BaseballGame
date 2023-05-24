@@ -2,10 +2,10 @@ import axiosInst from "@/utility/axiosInst";
 
 export default {
   sendGameLevelToSpring({}, payload) {
-    const { numberCount, level, point, user_id } = payload;
+    const { numberCount, level, bettingPoint, userId } = payload;
 
     return axiosInst
-      .post("/baseball/choose-level", { numberCount, level, point, user_id })
+      .post("/baseball/choose-level", { numberCount, level, bettingPoint, userId })
       .then((res) => {
         alert("난이도 선택 완료");
       })

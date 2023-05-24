@@ -1,5 +1,5 @@
 <template lang="">
-  <div>
+  <div align="center">
     <form @submit.prevent="chooseLevel">
       <div align="center">
         <legend>난이도 선택</legend>
@@ -10,7 +10,7 @@
       <div class="bet" align="left">
         현재 포인트: {{ currentPoint }} <br />
         베팅 금액:
-        <input type="number" v-model="point" /> <br />
+        <input type="number" v-model="bettingPoint" /> <br />
         {{ selectedLevel }} <br />
       </div>
       <v-btn color="grey" type="submit">선택하기</v-btn>
@@ -23,10 +23,10 @@ export default {
     return {
       numberCount: 0,
       level: 0,
-      point: 0,
+      bettingPoint: 0,
       currentPoint: parseInt(localStorage.getItem("loginUserPoint")),
       selectedLevel: "",
-      user_id: localStorage.getItem("loginUserId")
+      userId: localStorage.getItem("loginUserId")
     };
   },
   methods: {
@@ -47,9 +47,9 @@ export default {
     },
 
     chooseLevel() {
-      if (this.point < this.currentPoint) {
-        const { numberCount, level, point, user_id } = this;
-        this.$emit("submit", { numberCount, level, point, user_id });
+      if (this.bettingPoint < this.currentPoint) {
+        const { numberCount, level, bettingPoint, userId } = this;
+        this.$emit("submit", { numberCount, level, bettingPoint, userId });
       } else {
         alert("포인트가 부족합니다.");
       }
