@@ -75,4 +75,23 @@ public class UserServiceImpl implements UserService{
 
         return true;
     }
+
+    public void setGameStartPoint(Long userId, Integer bettingPoint) {
+        Optional<User> maybeUser = userRepository.findById(userId);
+
+        int currentPoint;
+        int gameStartPoint;
+
+        User user;
+
+        if(maybeUser.isPresent()) {
+            user = maybeUser.get();
+
+            currentPoint = user.getPoint();
+            gameStartPoint = currentPoint - bettingPoint;
+            user.setPoint(gameStartPoint);
+
+            userRepository.save(user);
+        }
+    }
 }

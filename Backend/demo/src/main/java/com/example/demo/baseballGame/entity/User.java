@@ -21,6 +21,7 @@ public class User {
     private String password;
     @Setter
     private String nickname;
+    @Setter
     private Integer point;
 
     public User(String email, String password, String nickname) {

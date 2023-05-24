@@ -16,25 +16,34 @@ import java.util.List;
 @RequestMapping("/baseball")
 public class BaseballController {
     private List<Integer> computerNumberList = new ArrayList<>();
-
     private List<Integer> playerNumberList = new ArrayList<>();
-    private GameManager gameManager = new GameManager();
     private Integer level;
+    private Long userId;
+    private int bettingPoint;
     final UserService userService;
+    final GameManager gameManager;
 
     @PostMapping("/get-result")
     public ResponseResultForm getGameResult (@RequestBody RequestPlayerNumberForm requestPlayerNumberForm) {
 
         playerNumberList = requestPlayerNumberForm.getPlayerNumberList();
-        List<String> result = gameManager.getResult(computerNumberList, playerNumberList, level);
+        List<String> result = gameManager.getResult(
+                computerNumberList, playerNumberList, level, userId, bettingPoint);
 
         return new ResponseResultForm(playerNumberList, result);
     }
 
     @PostMapping("/choose-level")
     public void getGameSetting(@RequestBody RequestGameSetForm requestGameSetForm){
+
         computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
+
         level = requestGameSetForm.getLevel();
+        userId = requestGameSetForm.getUser_Id();
+        bettingPoint = requestGameSetForm.getBettingPoint();
+
+        userService.setGameStartPoint(userId, bettingPoint);
+        gameManager.setAllocation(requestGameSetForm.getLevel(), requestGameSetForm.getNumberCount());
     }
 
     @PostMapping("/signup-account")
