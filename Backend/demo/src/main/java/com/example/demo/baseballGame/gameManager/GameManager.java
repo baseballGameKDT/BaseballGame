@@ -103,13 +103,13 @@ public class GameManager {
 
 
     public void setAllocation(Integer level, Integer numberCount) {
-        if(level == 3 && numberCount == 10) {
+        if(level == 10 && numberCount == 3) {
             allot = 1.5;
         }
-        if(level == 4 && numberCount == 20) {
+        if(level == 20 && numberCount == 4) {
             allot = 2;
         }
-        if(level == 4 && numberCount == 10) {
+        if(level == 10 && numberCount == 4) {
             allot = 3;
         }
     }
