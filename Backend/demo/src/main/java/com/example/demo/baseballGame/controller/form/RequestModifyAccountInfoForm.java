@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class RequestModifyAccountInfoForm {
-    private Long user_Id;
+    private Long userId;
     private String password;
     private String nickname;
 }

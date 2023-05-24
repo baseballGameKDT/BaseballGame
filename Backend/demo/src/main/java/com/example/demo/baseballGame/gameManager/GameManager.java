@@ -81,9 +81,9 @@ public class GameManager {
             if(win.equals("승리")) {
                 getPoint(userId, bettingPoint, allot);
             }
-            if(win.equals("패배")) {
-                losePoint(userId, bettingPoint);
-            }
+//            if(win.equals("패배")) {
+//                losePoint(userId, bettingPoint);
+//            }
         }
 
         return result;
@@ -135,18 +135,18 @@ public class GameManager {
         return user.getPoint();
     }
 
-    public Integer losePoint(Long userId, int bettingPoint) {
-        Optional<User> maybeUser = userRepository.findById(userId);
-        if(maybeUser.isPresent()) {
-            user = maybeUser.get();
-        }
-        int currentPoint = user.getPoint();
-        resultPoint = currentPoint - bettingPoint;
-
-        user.setPoint(resultPoint);
-        userRepository.save(user);
-
-        return user.getPoint();
-    }
+//    public Integer losePoint(Long userId, int bettingPoint) {
+//        Optional<User> maybeUser = userRepository.findById(userId);
+//        if(maybeUser.isPresent()) {
+//            user = maybeUser.get();
+//        }
+//        int currentPoint = user.getPoint();
+//        resultPoint = currentPoint - bettingPoint;
+//
+//        user.setPoint(resultPoint);
+//        userRepository.save(user);
+//
+//        return user.getPoint();
+//    }
 
 }

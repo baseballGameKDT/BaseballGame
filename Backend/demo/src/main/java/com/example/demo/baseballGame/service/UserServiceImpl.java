@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService{
         if(maybeUser.isPresent()) {
             if(password.equals(maybeUser.get().getPassword())) {
                 return new ResponseLoginForm(
-                        maybeUser.get().getUser_Id(),
+                        maybeUser.get().getUserId(),
                         maybeUser.get().getNickname(),
                         maybeUser.get().getPoint());
             }
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Boolean modify(RequestModifyAccountInfoForm requestModifyAccountInfoForm) {
-        Optional<User> maybeUser = userRepository.findById(requestModifyAccountInfoForm.getUser_Id());
+        Optional<User> maybeUser = userRepository.findById(requestModifyAccountInfoForm.getUserId());
 
         if(maybeUser.isEmpty()){
             return false;

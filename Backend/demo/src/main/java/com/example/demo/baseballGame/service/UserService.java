@@ -13,6 +13,6 @@ public interface UserService {
     Boolean modify(RequestModifyAccountInfoForm requestModifyAccountInfoForm);
 
     Boolean delete(Long user_id);
-    void setPoint(Integer );
+    //void setPoint(Integer );
     void setGameStartPoint(Long userId, Integer bettingPoint);
 }

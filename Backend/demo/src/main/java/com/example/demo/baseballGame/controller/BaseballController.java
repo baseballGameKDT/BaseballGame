@@ -39,7 +39,7 @@ public class BaseballController {
         computerNumberList = gameManager.createComputerNumberList(requestGameSetForm.getNumberCount());
 
         level = requestGameSetForm.getLevel();
-        userId = requestGameSetForm.getUser_Id();
+        userId = requestGameSetForm.getUserId();
         bettingPoint = requestGameSetForm.getBettingPoint();
 
         userService.setGameStartPoint(userId, bettingPoint);
