@@ -1,15 +1,15 @@
 package com.example.demo.baseballGame.service;
 
-import com.example.demo.baseballGame.controller.form.ResponseLoginForm;
 import com.example.demo.baseballGame.controller.form.RequestAccountForm;
 import com.example.demo.baseballGame.controller.form.RequestLoginForm;
+import com.example.demo.baseballGame.controller.form.RequestModifyAccountInfoForm;
+import com.example.demo.baseballGame.controller.form.ResponseLoginForm;
 import com.example.demo.baseballGame.entity.User;
 import com.example.demo.baseballGame.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -44,5 +44,35 @@ public class UserServiceImpl implements UserService{
             }
         }
         return null;
+    }
+
+    @Override
+    public Boolean modify(RequestModifyAccountInfoForm requestModifyAccountInfoForm) {
+        Optional<User> maybeUser = userRepository.findById(requestModifyAccountInfoForm.getUser_Id());
+
+        if(maybeUser.isEmpty()){
+            return false;
+        }
+
+        User user = maybeUser.get();
+        user.setNickname(requestModifyAccountInfoForm.getNickname());
+        user.setPassword(requestModifyAccountInfoForm.getPassword());
+
+        userRepository.save(user);
+
+        return true;
+    }
+
+    @Override
+    public Boolean delete(Long user_Id) {
+        Optional<User> maybeUser = userRepository.findById(user_Id);
+
+        if(maybeUser.isEmpty()){
+            return false;
+        }
+
+        userRepository.delete(maybeUser.get());
+
+        return true;
     }
 }
