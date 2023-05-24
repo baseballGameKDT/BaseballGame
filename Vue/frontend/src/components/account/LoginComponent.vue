@@ -1,7 +1,7 @@
 <template lang="">
   <div>
     <v-btn v-if="!isLoggedIn" @click="readyToLogin">로그인</v-btn>
-    <div v-if="isReadyToLogin">
+    <div v-if="isReadyToLogin" align="center">
       <label> 이메일: <input type="text" v-model="email" required /> </label
       ><br />
       <label>

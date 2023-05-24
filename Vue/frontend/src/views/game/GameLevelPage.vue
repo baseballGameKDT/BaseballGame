@@ -1,37 +1,38 @@
 <template lang="">
-    <div>
-        <GameLevelComponent @submit="onSubmit"/>
-    </div>
+  <div>
+    <GameLevelComponent @submit="onSubmit" />
+  </div>
 </template>
 
 <script>
-import GameLevelComponent from '@/components/game/GameLevelComponent.vue';
-import { mapActions } from 'vuex';
+import GameLevelComponent from "@/components/game/GameLevelComponent.vue";
+import { mapActions } from "vuex";
 
-const gameModule = 'gameModule'
+const gameModule = "gameModule";
 
 export default {
-    components: {
-        GameLevelComponent
+  components: {
+    GameLevelComponent,
+  },
+  methods: {
+    ...mapActions(gameModule, ["sendGameLevelToSpring"]),
+    async onSubmit(payload) {
+      await this.sendGameLevelToSpring(payload);
+      await this.$router.push({
+        name: "GamePlayPage",
+        params: { numberCount: payload.numberCount },
+      });
     },
-    methods: {
-        ...mapActions(
-            gameModule, ['sendGameLevelToSpring']
-        ),
-        async onSubmit (payload) {
-            await this.sendGameLevelToSpring(payload)
-            console.log(payload.numberCount)
-            await this.$router.push({
-                name: 'GamePlayPage',
-                params: { numberCount: payload.numberCount }
-            })
-        }
-    }
-    
-}
-
+  },
+};
 </script>
 
-<style lang="">
-    
+<style scoped>
+div {
+  margin: 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 </style>

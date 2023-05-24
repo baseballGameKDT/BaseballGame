@@ -14,6 +14,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
+
     final UserRepository userRepository;
 
     @Override

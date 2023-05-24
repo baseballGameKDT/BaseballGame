@@ -27,3 +27,4 @@ public class User {
         this.point = 10000;
     }
 }
+

@@ -1,34 +1,36 @@
 <template>
-    <div>
-        <h2>회원 가입</h2>
-        <SignUpComponent @submit="createAccount"/>
-    </div> 
+  <div>
+    <h2>회원 가입</h2>
+    <SignUpComponent @submit="createAccount" />
+  </div>
 </template>
 <script>
+import SignUpComponent from "@/components/account/SignUpComponent.vue";
+import { mapActions } from "vuex";
 
-import SignUpComponent from '@/components/account/SignUpComponent.vue';
-import { mapActions } from 'vuex';
-
-const accountModule = 'accountModule'
+const accountModule = "accountModule";
 
 export default {
-    components: {
-        SignUpComponent,
+  components: {
+    SignUpComponent,
+  },
+  methods: {
+    ...mapActions(accountModule, ["requestCreateAccountToSpring"]),
+    async createAccount(payload) {
+      await this.requestCreateAccountToSpring(payload);
+      await this.$router.push({
+        name: "home",
+      });
     },
-    methods: {
-        ...mapActions(
-            accountModule, ['requestCreateAccountToSpring']
-        ),
-        async createAccount (payload) {
-            await this.requestCreateAccountToSpring(payload)
-            await this.$router.push({
-                name: 'home'
-            })
-        }
-    }
-    
-}
+  },
+};
 </script>
-<style lang="">
-    
+<style scoped>
+div {
+  margin: 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 </style>
