@@ -18,16 +18,17 @@ export default {
     return axiosInst
       .post("baseball/login-account", { email, password })
       .then((res) => {
-        alert("로그인 성공!");
-        let userId = res.data.userId;
-        let nickName = res.data.nickName;
-        let point = res.data.point;
-        localStorage.setItem("loginUserId", userId);
-        localStorage.setItem("loginUserNickName", nickName);
-        localStorage.setItem("loginUserPoint", point);
-      })
-      .catch(() => {
-        alert("로그인 실패!");
+        if (res.data.userId != null) {
+          alert("로그인 성공!");
+          let userId = res.data.userId;
+          let nickName = res.data.nickName;
+          let point = res.data.point;
+          localStorage.setItem("loginUserId", userId);
+          localStorage.setItem("loginUserNickName", nickName);
+          localStorage.setItem("loginUserPoint", point);
+        } else {
+          alert("로그인 실패!");
+        }
       });
   },
 };
